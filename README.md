@@ -1,5 +1,8 @@
 # Laravel 12 Admin Starter Kit Livewire
 
+## Preview
+![Preview](preview.png)
+
 ## About This Repository
 
 This is a repository created to show how to create an Admin Panel in Laravel 12 using the Livewire Starter Kit(without Volt), using an "Admin" Model and with all the authentication features available in the "User" Model.
