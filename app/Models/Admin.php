@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class Admin extends Authenticatable implements MustVerifyEmail
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<\Database\Factories\AdminFactory> */
     use HasFactory, Notifiable;
 
     /**
