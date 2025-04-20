@@ -25,6 +25,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin.password.confirm' => \App\Http\Middleware\Admin\RequirePassword::class,
             // Override the default 'guest' authentication middleware
             'guest' => \App\Http\Middleware\Admin\RedirectIfAuthenticated::class,
+            // Override the default 'verified' middleware
+            'verified' => \App\Http\Middleware\Admin\EnsureEmailIsVerified::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

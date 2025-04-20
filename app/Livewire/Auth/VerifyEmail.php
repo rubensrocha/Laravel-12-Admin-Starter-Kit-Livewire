@@ -12,6 +12,16 @@ use Livewire\Component;
 class VerifyEmail extends Component
 {
     /**
+     * Check if the user has verified their email before rendering the component.
+     */
+    public function rendering()
+    {
+        if(Auth::user()->hasVerifiedEmail()) {
+            return $this->redirect(route('dashboard'), navigate: true);
+        }
+    }
+
+    /**
      * Send an email verification notification to the user.
      */
     public function sendVerification(): void

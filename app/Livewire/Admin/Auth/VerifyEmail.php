@@ -12,17 +12,27 @@ use Livewire\Component;
 class VerifyEmail extends Component
 {
     /**
+     * Check if the user has verified their email before rendering the component.
+     */
+    public function rendering()
+    {
+        if(Auth::guard('admin')->user()->hasVerifiedEmail()) {
+            return $this->redirect(route('admin.index'), navigate: true);
+        }
+    }
+
+    /**
      * Send an email verification notification to the user.
      */
     public function sendVerification(): void
     {
-        if (Auth::user()->hasVerifiedEmail()) {
+        if (Auth::guard('admin')->user()->hasVerifiedEmail()) {
             $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
 
             return;
         }
 
-        Auth::user()->sendEmailVerificationNotification();
+        Auth::guard('admin')->user()->sendEmailVerificationNotification();
 
         Session::flash('status', 'verification-link-sent');
     }
@@ -34,6 +44,6 @@ class VerifyEmail extends Component
     {
         $logout();
 
-        $this->redirect('/', navigate: true);
+        $this->redirect(route('admin.index'), navigate: true);
     }
 }
